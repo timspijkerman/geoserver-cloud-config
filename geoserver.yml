@@ -56,7 +56,7 @@ geoserver:
     gateway-shared-auth:
        # enable sharing the webui authentication through the gateway with the other microservices
        # make sure the same config is applied in gateway-service.yml
-       enabled: ${gateway.shared-auth:true}
+       enabled: false
        # if enabled, automatically set up the authentication filter chain
        auto: true
        # only to be set to true in the webui service (e.g. as in spring.config.activate.on-profile: webui_service) 
@@ -218,10 +218,10 @@ spring.config.activate.on-profile: pgconfig
 backend.pgconfig: true
 # configure the jndi jdbc datasource with the placeholders defined in jndi.yml
 jndi.pgconfig.enabled: true
-pgconfig.host: pgconfigdb
+pgconfig.host: caeli-pgdb.c4dnsyndftht.eu-west-1.rds.amazonaws.com
 pgconfig.port: 5432
 pgconfig.database: pgconfig
-pgconfig.schema: pgconfig
+pgconfig.schema: public
 pgconfig.username: pgconfig
 pgconfig.password: pgconfig
 pgconfig.maxConnections: 10
@@ -263,7 +263,7 @@ geoserver:
   security:
     layergroup-containmentcache: true
     # set shared auth to server mode. It shall be false in all other services.
-    gateway-shared-auth.server: true
+    gateway-shared-auth.server: false
   web-ui:
     acl.enabled: ${geoserver.acl.enabled}
     file-browser.hide-file-system: ${webui.hide-filesystem:false}
