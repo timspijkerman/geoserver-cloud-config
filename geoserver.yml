@@ -302,32 +302,4 @@ geoserver:
 spring.config.activate.on-profile: geonode
 # Access Control List client config. Replaces GeoFence
 acl.enabled: true
----
-#############################################
-spring.config.activate.on-profile: local
-## `local` profile, used for development only.
-## Match ports to the ones defined in the development docker compose file
-## allows to run an application from the IDE and join the cluster, providing environment
-## variables that otherwise would be given by docker-compose.yml.
-## It is safe to remove this profile completely in a production deployment config.
-rabbitmq.host: localhost
-rabbitmq.port: 5672
-eureka.server.url: http://localhost:8761/eureka
-config.server.url: http://localhost:8888
-
-acl.url: http://localhost:9000/acl/api
-
-jdbcconfig.url: jdbc:postgresql://localhost:54321/geoserver_config
-jdbcconfig.username: geoserver
-jdbcconfig.password: geo5erver
-
-pgconfig.host: localhost
-pgconfig.port: 8432
-
-jndi:
-   datasources:
-      postgis.enabled: true
-      postgis.url: jdbc:postgresql://localhost:6432/postgis
-
-GEOWEBCACHE_CACHE_DIR: ${GEOSERVER_DATA_DIR:/tmp}/gwc
 
