@@ -13,3 +13,5 @@ spring:
       override-system-properties: false
     discovery:
       enabled: false
+    gateway:
+      enabled: false
