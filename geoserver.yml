@@ -158,6 +158,18 @@ geotools:
         password: ${https.proxyPassword:${geotools.httpclient.proxy.http.password}}
         nonProxyHosts: ${https.nonProxyHosts:${geotools.httpclient.proxy.http.nonProxyHosts}}
 
+# Define static targets using known host names.
+# Host names can be docker-compose assigned service names, or k8s service names as appropriate
+targets:
+  acl: http://acl:8080
+  wfs: http://wfs:8080
+  wms: http://wms:8080
+  wcs: http://wcs:8080
+  wps: http://wps:8080
+  rest: http://rest:8080
+  gwc: http://gwc:8080
+  webui: http://webui:8080
+
 # GeoWebCache-specific configuration properties, apply to services that run some GWC
 # internal components. For example, all of gwc-service, wms-service, and web-ui, will
 # need to access GeoWebCache's blob stores, and tile-layer configuration resources.
