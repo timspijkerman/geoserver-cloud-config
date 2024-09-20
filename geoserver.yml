@@ -125,15 +125,36 @@ gwc:
     azure: true
     s3: true
 
+# PGConfig Service Profile
+---
+spring.config.activate.on-profile: pgconfig
+pgconfig:
+  enabled: true
+  initialize: true
+  schema: ${PG_SCHEMA:public}  # Default to "public" schema
+  create-schema: true
+  datasource:
+    url: "jdbc:postgresql://${PG_HOST:caeli-pgdb.c4dnsyndftht.eu-west-1.rds.amazonaws.com}:${PG_PORT:5432}/${PG_DB:pgconfig}"
+    username: ${PG_USERNAME:pgconfig}  # Default username
+    password: ${PG_PASSWORD:pgconfig}  # Default password
+    driverClassname: org.postgresql.Driver
+    minimumIdle: 0
+    maximumPoolSize: 10
+    connectionTimeout: 2500
+    idleTimeout: 30000
+
+
 # ACL Service Profile
 ---
 spring.config.activate.on-profile: acl
-acl.enabled: true
-acl.url: http://acl:8080/acl/api
-acl.username: geoserver
-acl.password: s3cr3t
-acl.caching: true
-acl.initTimeout: 10
+acl:
+  enabled: true
+  url: ${ACL_URL:http://acl:8080/acl/api}
+  username: ${ACL_USERNAME:geoserver}
+  password: ${ACL_PASSWORD:s3cr3t}
+  caching: true
+  initTimeout: ${ACL_INIT_TIMEOUT:10}
+
 
 # Backend Profiles
 ---
