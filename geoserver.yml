@@ -4,6 +4,10 @@ spring.config.import:
   - geoserver_logging.yml
 
 spring:
+  main:
+    banner-mode: "console"
+  banner:
+    content: "==== GEOSERVER YAML APPLIED ===="
   cache:
     type: caffeine
     caffeine:
