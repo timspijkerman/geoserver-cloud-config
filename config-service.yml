@@ -1,4 +1,14 @@
+logging:
+  level:
+    org.springframework.cloud.config: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n - This is from config-service.yml"
+
 spring:
+  main:
+    banner-mode: "console"
+  banner:
+    content: "==== CONFIG SERVICE YAML APPLIED ===="
   cloud:
     config:
       # allow clients to override external property sources
