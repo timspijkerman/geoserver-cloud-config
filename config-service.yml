@@ -1,6 +1,7 @@
 logging:
   level:
-    org.springframework.cloud.config: TRACE
+    org.springframework.boot.context.config: DEBUG
+    org.springframework.cloud.config.server: TRACE
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n - This is from config-service.yml"
 
