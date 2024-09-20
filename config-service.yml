@@ -34,7 +34,7 @@ server:
 # Enable logging for better traceability and debugging
 logging:
   level:
-    root: info
+    root: debug
     org.springframework.cloud.config: debug  # Logs info about config file fetching
 
 # Optionally, expose health and info endpoints for monitoring
