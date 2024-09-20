@@ -1,45 +1,7 @@
-# Disable Eureka and service discovery since you're not using it
-eureka:
-  client:
-    enabled: false
-
 spring:
   cloud:
     config:
-      # Git repository where microservices configuration files are stored
-      server:
-        git:
-          uri: https://github.com/timspijkerman/geoserver-cloud-config.git  # Your Git repository URL
-          default-label: main  # The branch to fetch configs from, adjust if necessary
-          # Optional: If authentication is required
-          # username: your-username
-          # password: your-password
-          searchPaths: '{application}'  # Looks for service-specific config files in subfolders
-          
-      # Allow clients to override configurations fetched from the config server
+      # allow clients to override external property sources
       allow-override: true
       override-none: false
-      override-system-properties: false  # System properties can't override configurations
-
-    # Disable discovery and gateway since you're using AWS components like ALB
-    discovery:
-      enabled: false
-    gateway:
-      enabled: false
-
-# Server settings for the config service
-server:
-  port: 8080  # The default port for the config service
-
-# Enable logging for better traceability and debugging
-logging:
-  level:
-    root: debug
-    org.springframework.cloud.config: debug  # Logs info about config file fetching
-
-# Optionally, expose health and info endpoints for monitoring
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health, info
+      override-system-properties: false
