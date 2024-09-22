@@ -1,10 +1,3 @@
-logging:
-  level:
-    org.springframework.boot.context.config: DEBUG
-    org.springframework.cloud.config.server: TRACE
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n - This is from config-service.yml"
-
 spring:
   main:
     banner-mode: "console"
@@ -16,3 +9,10 @@ spring:
       allow-override: true
       override-none: false
       override-system-properties: false
+
+logging:
+  level:
+    org.springframework.boot.context.config: DEBUG
+    org.springframework.cloud.config.server: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n - This is from config-service.yml"
