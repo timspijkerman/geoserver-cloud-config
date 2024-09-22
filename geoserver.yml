@@ -1,17 +1,17 @@
-# General configuration imports
-spring.config.import:
-  - geoserver_spring.yml
-  - geoserver_logging.yml
-
 spring:
   main:
     banner-mode: "console"
   banner:
-    content: "==== GEOSERVER YAML APPLIED ===="
+    content: "==== ACL CONFIG FETCHED ===="
   cache:
     type: caffeine
     caffeine:
       spec: softValues,initialCapacity=10000,maximumSize=10000,recordStats
+      
+# General configuration imports
+spring.config.import:
+  - geoserver_spring.yml
+  - geoserver_logging.yml
 
 geoserver:
   debug:
