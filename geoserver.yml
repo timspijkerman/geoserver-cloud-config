@@ -96,7 +96,39 @@ gwc:
   blobstores:
     azure: true
     s3: true
+    
+# Add ACL profile-specific configuration
+---
+spring.config.activate.on-profile: acl
+geoserver:
+  acl:
+    enabled: true
+    client:
+      basePath: ${ACL_URL:http://acl:8080/acl/api}
+      username: ${ACL_USERNAME:geoserver}
+      password: ${ACL_PASSWORD:s3cr3t}
+      caching: true
+      initTimeout: 10
 
+# Add PGConfig profile-specific configuration
+---
+spring.config.activate.on-profile: pgconfig
+geoserver:
+  backend:
+    pgconfig:
+      enabled: true
+      initialize: true
+      schema: ${PG_SCHEMA:public}
+      create-schema: true
+      datasource:
+        url: "jdbc:postgresql://${PG_HOST:caeli-pgdb.c4dnsyndftht.eu-west-1.rds.amazonaws.com}:${PG_PORT:5432}/${PG_DB:pgconfig}"
+        username: ${PG_USERNAME:pgconfig}
+        password: ${PG_PASSWORD:pgconfig}
+        driverClassname: org.postgresql.Driver
+        minimumIdle: 0
+        maximumPoolSize: 10
+        connectionTimeout: 2500
+        idleTimeout: 30000
 
 # Other Backend Profiles
 ---
