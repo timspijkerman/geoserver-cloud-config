@@ -21,7 +21,7 @@ spring:
     host: https://b-2942cdc7-f47e-40de-84b5-c79b668dd802.mq.eu-west-1.amazonaws.com
     port: 5671
     username: cognot
-    password: &F9vfkhOWxI!^N1^
+    password: "&F9vfkhOWxI!^N1^"  # Enclose the password in double quotes
     virtual-host: /
     ssl:
       enabled: true
