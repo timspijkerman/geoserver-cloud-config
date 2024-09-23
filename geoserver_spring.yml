@@ -18,10 +18,10 @@ server:
 
 spring:
   rabbitmq:
-    host: ${rabbitmq.host:rabbitmq}
-    port: ${rabbitmq.port:5672}
-    username: ${rabbitmq.user:guest}
-    password: ${rabbitmq.password:guest}
+    host: ${rabbitmq.host:b-2942cdc7-f47e-40de-84b5-c79b668dd802.mq.eu-west-1.amazonaws.com}
+    port: ${rabbitmq.port:5671}
+    username: ${rabbitmq.user:cognot}
+    password: ${rabbitmq.password:&F9vfkhOWxI!^N1^}
     virtual-host: ${rabbitmq.vhost:}
   cloud:
     bus:
