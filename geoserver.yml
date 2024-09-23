@@ -330,3 +330,4 @@ jndi:
       postgis.url: jdbc:postgresql://localhost:6432/postgis
 
 GEOWEBCACHE_CACHE_DIR: ${GEOSERVER_DATA_DIR:/tmp}/gwc
+
