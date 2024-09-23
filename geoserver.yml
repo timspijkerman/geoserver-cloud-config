@@ -56,9 +56,9 @@ geoserver:
     gateway-shared-auth:
        # enable sharing the webui authentication through the gateway with the other microservices
        # make sure the same config is applied in gateway-service.yml
-       enabled: ${gateway.shared-auth:true}
+       enabled: false
        # if enabled, automatically set up the authentication filter chain
-       auto: true
+       auto: false
        # only to be set to true in the webui service (e.g. as in spring.config.activate.on-profile: webui_service) 
        server: false
   servlet.filter.session-debug.enabled: false # until the NPE is fixed
