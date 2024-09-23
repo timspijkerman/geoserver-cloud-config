@@ -218,10 +218,10 @@ spring.config.activate.on-profile: pgconfig
 backend.pgconfig: true
 # configure the jndi jdbc datasource with the placeholders defined in jndi.yml
 jndi.pgconfig.enabled: true
-pgconfig.host: pgconfigdb
+pgconfig.host: caeli-pgdb.c4dnsyndftht.eu-west-1.rds.amazonaws.com
 pgconfig.port: 5432
 pgconfig.database: pgconfig
-pgconfig.schema: pgconfig
+pgconfig.schema: public
 pgconfig.username: pgconfig
 pgconfig.password: pgconfig
 pgconfig.maxConnections: 10
