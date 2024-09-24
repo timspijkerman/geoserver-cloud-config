@@ -107,13 +107,13 @@ geoserver:
         connectionTimeout: ${jdbcconfig.connectionTimeout:250}
         idleTimeout: ${jdbcconfig.idleTimeout:10000}
     pgconfig:
-      enabled: ${backend.pgconfig:false}
+      enabled: ${backend.pgconfig:true}
       initialize: ${pgconfig.initialize:true}
       schema: ${pgconfig.schema:public}
       create-schema: true
       datasource:
         jndi-name: ${pgconfig.jndi-name:}
-        url: "${pgconfig.url:jdbc:postgresql://${pgconfig.host:database}:${pgconfig.port:5432}/${pgconfig.database:geoserver_config}}"
+        url: "${pgconfig.url:jdbc:postgresql://${pgconfig.host:caeli-pgdb.c4dnsyndftht.eu-west-1.rds.amazonaws.com}:${pgconfig.port:5432}/${pgconfig.database:pgconfig}}"
         username: ${pgconfig.username:pgconfig}
         password: ${pgconfig.password:pgconfig}
         driverClassname: ${pgconfig.driverClassname:org.postgresql.Driver}
@@ -167,7 +167,7 @@ geotools:
 # so that gwc/wms-c integration workds independently of gwc-service.
 gwc:
   enabled: true
-  cache-directory: ${GEOWEBCACHE_CACHE_DIR:${geoserver.backend.data-directory.location}/gwc}
+  cache-directory: ${GEOWEBCACHE_CACHE_DIR:/data/geowebcache}
   rest-config: true
   web-ui: true
   wms-integration: true
