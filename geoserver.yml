@@ -167,7 +167,7 @@ geotools:
 # so that gwc/wms-c integration workds independently of gwc-service.
 gwc:
   enabled: true
-  cache-directory: ${GEOWEBCACHE_CACHE_DIR:/data/geowebcache}
+  cache-directory: /data/geowebcache
   rest-config: true
   web-ui: true
   wms-integration: true
@@ -181,6 +181,18 @@ gwc:
   blobstores:
     azure: false
     s3: false
+  disk-quota:
+    enabled: true
+    datasource:
+      url: "${jdbcconfig.url:jdbc:postgresql://${jdbcconfig.host:database}:${jdbcconfig.port:5432}/${jdbcconfig.database:geoserver_config}?currentSchema=${jdbcconfig.schema:public}}"
+      username: ${jdbcconfig.username:geoserver}
+      password: ${jdbcconfig.password:geo5erver}
+      driverClassname: ${jdbcconfig.driverClassname:org.postgresql.Driver}
+      # optional:
+      minimumIdle: ${jdbcconfig.minConnections:0}
+      maximumPoolSize: ${jdbcconfig.maxConnections:8}
+      connectionTimeout: ${jdbcconfig.connectionTimeout:250}
+      idleTimeout: ${jdbcconfig.idleTimeout:10000}
 
 ---
 #########################################################
