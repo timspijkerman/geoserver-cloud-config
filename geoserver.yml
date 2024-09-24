@@ -143,7 +143,7 @@ geoserver:
 geotools:
   httpclient:
     proxy:
-      enabled: true
+      enabled: false
       http:
         host: ${http.proxyHost:}
         port: ${http.proxyPort:}
@@ -166,7 +166,7 @@ geotools:
 # on-demand tile seeding in order to serve WMC-C tiled requests if gwc.wms-integration=true,
 # so that gwc/wms-c integration workds independently of gwc-service.
 gwc:
-  enabled: false
+  enabled: true
   cache-directory: ${GEOWEBCACHE_CACHE_DIR:/data/geowebcache}
   rest-config: true
   web-ui: true
@@ -179,8 +179,8 @@ gwc:
     gmaps: true
     mgmaps: true
   blobstores:
-    azure: true
-    s3: true
+    azure: false
+    s3: false
 
 ---
 #########################################################
