@@ -38,12 +38,12 @@ geoserver:
     instanceId: false
   # Access Control List client config. Usually enabled through the acl spring profile.
   acl:
-    enabled: ${acl.enabled:false}
+    enabled: ${acl.enabled:true}
     client:
       basePath: ${acl.url:http://acl:8080/acl/api}
-      username: ${acl.username:}
-      password: ${acl.password:}
-      debug: ${acl.debug:false}
+      username: ${acl.username:geoserver}
+      password: ${acl.password:s3cr3t}
+      debug: ${acl.debug:true}
       caching: ${acl.caching:true}
       # timeout in seconds for startup to fail if API is not available
       initTimeout: ${acl.initTimeout:10}
@@ -182,17 +182,7 @@ gwc:
     azure: false
     s3: false
   disk-quota:
-    enabled: true
-    datasource:
-      url: "${jdbcconfig.url:jdbc:postgresql://${jdbcconfig.host:database}:${jdbcconfig.port:5432}/${jdbcconfig.database:geoserver_config}?currentSchema=${jdbcconfig.schema:public}}"
-      username: ${jdbcconfig.username:geoserver}
-      password: ${jdbcconfig.password:geo5erver}
-      driverClassname: ${jdbcconfig.driverClassname:org.postgresql.Driver}
-      # optional:
-      minimumIdle: ${jdbcconfig.minConnections:0}
-      maximumPoolSize: ${jdbcconfig.maxConnections:8}
-      connectionTimeout: ${jdbcconfig.connectionTimeout:250}
-      idleTimeout: ${jdbcconfig.idleTimeout:10000}
+    enabled: false
 
 ---
 #########################################################
@@ -203,7 +193,7 @@ acl.enabled: true
 acl.url: http://acl:8080/acl/api
 acl.username: geoserver
 acl.password: s3cr3t
-acl.debug: false
+acl.debug: true
 acl.caching: true
 acl.startupCheck: true
 acl.initTimeout: 10
