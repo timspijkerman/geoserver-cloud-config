@@ -126,7 +126,15 @@ geoserver:
     css.enabled: true
     mapbox.enabled: true
   wms:
+    strict: true
+    exception:
+      handlingMode: STRICT
+      verbose: true
     reflector.enabled: true
+      exceptionFormats:
+        - application/vnd.ogc.se_xml
+        - application/vnd.ogc.se_inimage
+        - application/vnd.ogc.se_blank
     kml.enabled: true
     output-formats:
       vector-tiles:
