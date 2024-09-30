@@ -312,7 +312,7 @@ geoserver:
         wmts: ${gwc.services.wmts:true}
         wmsc: ${gwc.services.wms:true}
     extensions:
-      importer.enabled: ${webui.importer.enabled:false}
+      importer.enabled: ${webui.importer.enabled:true}
     demos:
       enabled: ${webui.demos.enabled:true}
       wps-request-builder: true
@@ -329,7 +329,7 @@ geoserver:
     tools:
       enabled: ${webui.tools.enabled:true}
       resource-browser: true
-      catalog-bulk-load: true
+      catalog-bulk-load: true 
 ---
 spring.config.activate.on-profile: geonode
 # Access Control List client config. Replaces GeoFence
