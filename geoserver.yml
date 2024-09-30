@@ -148,7 +148,7 @@ geoserver:
       handlingMode: STRICT
       verbose: true
     reflector:
-      enabled: true
+      enabled: false
     exceptionFormats:
       - application/vnd.ogc.se_xml
       - application/vnd.ogc.se_inimage
