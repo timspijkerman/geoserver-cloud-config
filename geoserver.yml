@@ -33,9 +33,10 @@ spring:
 # GeoServer-Cloud common config properties
 geoserver:
   debug:
-    # add an X-gs-cloud-service-id:<service-id> response header to each response
+    # Add an X-gs-cloud-service-id:<service-id> response header to each response
     # to track which cluster node replied
     instanceId: false
+
   # Access Control List client config. Usually enabled through the acl spring profile.
   acl:
     enabled: ${acl.enabled:true}
@@ -45,67 +46,79 @@ geoserver:
       password: ${acl.password:s3cr3t}
       debug: ${acl.debug:true}
       caching: ${acl.caching:true}
-      # timeout in seconds for startup to fail if API is not available
+      # Timeout in seconds for startup to fail if API is not available
       initTimeout: ${acl.initTimeout:10}
+
   metrics:
     enabled: true
     instance-id: ${info.instance-id}
+
   security:
     enabled: true
     authkey: true
     gateway-shared-auth:
-       # enable sharing the webui authentication through the gateway with the other microservices
-       # make sure the same config is applied in gateway-service.yml
-       enabled: false
-       # if enabled, automatically set up the authentication filter chain
-       auto: false
-       # only to be set to true in the webui service (e.g. as in spring.config.activate.on-profile: webui_service) 
-       server: false
-  servlet.filter.session-debug.enabled: false # until the NPE is fixed
+      # Enable sharing the webui authentication through the gateway with the other microservices
+      # Make sure the same config is applied in gateway-service.yml
+      enabled: false
+      # If enabled, automatically set up the authentication filter chain
+      auto: false
+      # Only to be set to true in the webui service (e.g. as in spring.config.activate.on-profile: webui_service)
+      server: false
+
+  servlet:
+    filter:
+      session-debug:
+        enabled: false  # Until the NPE is fixed
+
   catalog:
     advertised: true
     localWorkspace: true
     isolated: true
     secure: true
-    # enable if needed on a backend-specific profile (e.g. jdbcconfig)
-    caching.enabled: false
+    # Enable if needed on a backend-specific profile (e.g. jdbcconfig)
+    caching:
+      enabled: false
+
   bus:
     enabled: true
-    # whether to send distributed events (i.e. acts as master). All instances receive remote events.
+    # Whether to send distributed events (i.e. acts as master). All instances receive remote events.
     send-events: true
-    # whether to send the object (CatalogInfo/config info) as payload with the event. Set to false, 
-    # not all possible payload types are properly tested, and full object payload is not needed.
+    # Whether to send the object (CatalogInfo/config info) as payload with the event.
     send-object: ${geoserver.backend.data-directory.enabled}
-    # whether to send a diff of changes as payload with the event. Set to false, not all possible payload types are properly tested nor needed.
+    # Whether to send a diff of changes as payload with the event.
     send-diff: ${geoserver.backend.data-directory.enabled}
+
   backend:
-    # configure catalog backends and decide which backend to use on this service.
-    # All backends are disabled, enable the required one on each service. 
+    # Configure catalog backends and decide which backend to use on this service.
+    # All backends are disabled, enable the required one on each service.
     data-directory:
       enabled: ${backend.data-directory:false}
-      location: ${GEOSERVER_DATA_DIR:/opt/app/data_directory} 
-      # use optimized parallel datadirectory loader. Defaults to true
+      location: ${GEOSERVER_DATA_DIR:/opt/app/data_directory}
+      # Use optimized parallel datadirectory loader. Defaults to true
       parallel-loader: true
       eventual-consistency:
-        # eventual consistency enfocement. Bus events may come out of order under stress
+        # Eventual consistency enforcement. Bus events may come out of order under stress
         enabled: true
-        # milliseconds to wait before retries. The list size determines the number of retries. The values the milliseconds to wait
+        # Milliseconds to wait before retries. The list size determines the number of retries.
         retries: 25, 25, 50
+
     jdbcconfig:
       enabled: ${backend.jdbcconfig:false}
       initdb: true
-      web.enabled: true
+      web:
+        enabled: true
       cache-directory: ${jdbcconfig.cachedir:${java.io.tmpdir}/cngs/jdbcconfig/cache}
       datasource:
         url: "${jdbcconfig.url:jdbc:postgresql://${jdbcconfig.host:database}:${jdbcconfig.port:5432}/${jdbcconfig.database:geoserver_config}?currentSchema=${jdbcconfig.schema:public}}"
         username: ${jdbcconfig.username:geoserver}
         password: ${jdbcconfig.password:geo5erver}
         driverClassname: ${jdbcconfig.driverClassname:org.postgresql.Driver}
-        # optional:
+        # Optional:
         minimumIdle: ${jdbcconfig.minConnections:0}
         maximumPoolSize: ${jdbcconfig.maxConnections:8}
         connectionTimeout: ${jdbcconfig.connectionTimeout:250}
         idleTimeout: ${jdbcconfig.idleTimeout:10000}
+
     pgconfig:
       enabled: ${backend.pgconfig:true}
       initialize: ${pgconfig.initialize:true}
@@ -117,30 +130,41 @@ geoserver:
         username: ${pgconfig.username:pgconfig}
         password: ${pgconfig.password:pgconfig}
         driverClassname: ${pgconfig.driverClassname:org.postgresql.Driver}
-        # optional:
+        # Optional:
         minimumIdle: ${pgconfig.minConnections:0}
         maximumPoolSize: ${pgconfig.maxConnections:10}
         connectionTimeout: ${pgconfig.connectionTimeout:2500}
         idleTimeout: ${pgconfig.idleTimeout:30000}
+
   styling:
-    css.enabled: true
-    mapbox.enabled: true
+    css:
+      enabled: true
+    mapbox:
+      enabled: true
+
   wms:
     strict: true
     exception:
       handlingMode: STRICT
       verbose: true
-    reflector.enabled: true
-      exceptionFormats:
-        - application/vnd.ogc.se_xml
-        - application/vnd.ogc.se_inimage
-        - application/vnd.ogc.se_blank
-    kml.enabled: true
+    reflector:
+      enabled: true
+    exceptionFormats:
+      - application/vnd.ogc.se_xml
+      - application/vnd.ogc.se_inimage
+      - application/vnd.ogc.se_blank
+    kml:
+      enabled: true
     output-formats:
       vector-tiles:
-        mapbox.enabled: true
-        geojson.enabled: true
-        topojson.enabled: true
+        mapbox:
+          enabled: true
+        geojson:
+          enabled: true
+        topojson:
+          enabled: true
+
+
 
 # GeoTools HTTP Client proxy configuration, allows configuring cascaded WMS/WMTS/WFS stores
 # that need to go through an HTTP proxy without affecting all the http clients at the JVM level
